@@ -1,0 +1,29 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: "http://localhost:8761/eureka"
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+
+spring:
+  application:
+    name: "payment"
+  datasource:
+    url: jdbc:h2:file:~/payments;AUTO_SERVER=true #AUTO_SERVER=true multiple process is allow to get database
+    username: root
+    password: dev
+    driver-class-name: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
+server:
+  port: 8087 #  0 random port
+  servlet:
+    context-path: /orders
